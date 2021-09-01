@@ -1,0 +1,267 @@
+
+
+
+
+<body class="register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://cdn5.vectorstock.com/i/1000x1000/76/04/online-learning-concept-with-cartoon-character-vector-34277604.jpg" alt=""/>
+                        <h3>Welcome to Course Management System</h3>
+                        <br>
+                        <button class="btn float-center" routerLink="">Login</button><br/>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Student</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Professor</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading">Register as a Student</h3>
+                                <form class="row register-form"#signupForm="ngForm" enctype="multipart/form-data"(ngSubmit)="signupForm.form.valid && signups(signupForm)">
+                                   
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="First name *"[(ngModel)]="student.fname" name="fname"  minlength="4" pattern="^[a-zA-Z\s]+$" required #fname="ngModel" >
+                                            <small class="form-text text-muted" *ngIf="fname.touched && !fname.valid" class="form-label text-danger">Enter valid name</small>
+                                            
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Last name *"[(ngModel)]="student.lname" name="lname"  minlength="4" pattern="^[a-zA-Z\s]+$" required #lname="ngModel" >
+                                            <small class="form-text text-muted" *ngIf="lname.touched && !lname.valid" class="form-label text-danger">Enter valid name</small> 
+                                        </div>  
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="pwd"  id="loginPassword" (keyup)='validatePasswordStrength()' (focusout)='PwdValidDis=false' placeholder="Enter the Password" minlength="8" pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})' #pwd="ngModel" [(ngModel)]="student.password" required>
+                                            <span *ngIf="(pwd.invalid && (pwd.dirty || pwd.touched|| submitted) ) " >
+                                                <div *ngIf="pwd.errors?.required" >
+                                                   <p>Password is required</p>
+                                                 </div>    
+                                                 <div *ngIf="pwd.invalid && (this.force==1) " >
+                                                   <p style='color: red'>Weak Passsword</p>
+                                                 </div>
+                                                 <div *ngIf="pwd.invalid && (this.force==2) " >
+                                                   <p style='color: red'>Weak Passsword</p>
+                                                 </div> 
+                                                 <div *ngIf="pwd.invalid && (this.force==3) " >
+                                                   <p style='color: #FF7043'>Medium Strength Password</p>
+                                                 </div> 
+                                                 </span>
+                                                 <span *ngIf="(pwd.valid && (pwd.dirty || pwd.touched|| submitted)) " >
+                                                    <div *ngIf="pwd.valid && (this.force==4) && PwdValidDis " >
+                                                      <p style='color: Green'>Strong Password</p>
+                                                    </div>
+                                                  </span>
+                                                
+
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="pwd2"  id="loginPassword" (keyup)= 'validatePwd2($event)'   placeholder="Confirm Password" #pwd2='ngModel' minlength="8" [(ngModel)]="password2"  required> 
+                                            <span *ngIf=" (pwd2.invalid) && (pwd2.dirty || pwd2.touched|| submitted ) ">
+                                                <div *ngIf="pwd2.errors?.required" >
+                                                    <p style='color: red'>Password is required</p>
+                                                  </div>
+                                                  <div *ngIf="pwd2.errors?.minlength">
+                                                    <p style='color: #FF7043'>Password must be at least 8 characters long.</p>
+                                                  </div>
+                                                  <div *ngIf="pwd2.errors?.pattern">
+                                                    <p style='color: red'>Invalid password</p>
+                                                  </div>                  
+                                            </span>
+                                            <span *ngIf=" (pwd2.valid) && (!pwd2Valid) ">
+                                                  <div *ngIf="!pwd2Valid">
+                                                    <p style='color: red'>password mismatch</p>
+                                                  </div>                      
+                                            </span>
+                                                   
+                                        
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Gender *"[(ngModel)]="student.gender" name="gender"  (keyup)="gendercheck()" minlength="4" pattern="^[a-zA-Z\s]+$"required #gender="ngModel" >
+                                            <span *ngIf=" (gender.invalid) && (gender.dirty || gender.touched|| submitted ) ">
+                                                <div>
+                                                    <p style='color: red'>Enter valid gender</p>
+                                                  </div>
+                                            </span>   
+                                            <span *ngIf=" (gender.valid) && (!genderValid) ">
+                                                <div *ngIf="!genderValid">
+                                                  <p style='color: red'>Enter Male,Female or Transgender</p>
+                                                </div>                      
+                                          </span>   
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                        <input class="form-control" type="file"  name="photo" (change)="selectImage($event)" [(ngModel)]="student.photo" #photo="ngModel" required>
+                                        <small class="form-text text-muted" *ngIf="photo.touched && !photo.valid" class="form-label text-danger">upload photo</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email *" name="email" #email="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" [(ngModel)]="student.email" required >
+                                            <small class="form-text text-muted" *ngIf="email.touched && !email.valid" class="form-label text-danger">Enter valid email</small>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Your Date of Birth *"[(ngModel)]="student.dob" name="dob"  minlength="10" pattern="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$" required #dob="ngModel" >
+                                            <small class="form-text text-muted" *ngIf="dob.touched && !dob.valid" class="form-label text-danger">Enter valid DoB</small> 
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="phoneno" class="form-control" placeholder="Phone number *" name="phone" pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" length="10" [(ngModel)]="student.phone" #phone="ngModel" required>
+                                            <small class="form-text text-muted" *ngIf="phone.touched && !phone.valid" class="form-label text-danger">Enter valid phoneno</small>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="address" placeholder="Address *"[(ngModel)]="student.address" minlength="12" #address="ngModel" required>
+                                            <small class="form-text text-muted" *ngIf="address.touched && !address.valid" class="form-label text-danger">Enter valid address</small>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="qualification"placeholder="Your Qualification *" [(ngModel)]="student.qualification" #qualification="ngModel" minlength="4" required>
+                                            <small class="form-text text-muted" *ngIf="qualification.touched && !qualification.valid" class="form-label text-danger">Enter highest qualification</small>
+                                        </div>
+                                        <br>
+                                    
+                                        <button type="submit" class="btn btn-primary"[disabled]="signupForm.form.invalid">Register</button>
+                                    </div>
+                                </form>    
+                                
+                            </div>
+                            <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <h3  class="register-heading">Register as a Professor</h3>
+                                <form class="row register-form"#signupForm2="ngForm" enctype="multipart/form-data"(ngSubmit)="signupForm2.form.valid && signupp(signupForm2)">
+                                   
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="First name *"[(ngModel)]="professor.fname" name="pfname"  minlength="4" pattern="^[a-zA-Z\s]+$" required #pfname="ngModel" >
+                                            <small class="form-text text-muted" *ngIf="pfname.touched && !pfname.valid" class="form-label text-danger">Enter valid name</small>
+                                            
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Last name *"[(ngModel)]="professor.lname" name="plname"  minlength="4" pattern="^[a-zA-Z\s]+$" required #plname="ngModel" >
+                                            <small class="form-text text-muted" *ngIf="plname.touched && !plname.valid" class="form-label text-danger">Enter valid name</small> 
+                                        </div>  
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="ppwd"   (keyup)='validatePasswordStrength()' (focusout)='PwdValidDis=false' placeholder="Enter the Password" minlength="8" pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})' #ppwd="ngModel" [(ngModel)]="professor.password" required>
+                                            <span *ngIf="(ppwd.invalid && (ppwd.dirty || ppwd.touched|| submitted) ) " >
+                                                <div *ngIf="ppwd.errors?.required" >
+                                                   <p>Password is required</p>
+                                                 </div>    
+                                                 <div *ngIf="ppwd.invalid && (this.force==1) " >
+                                                   <p style='color: red'>Weak Passsword</p>
+                                                 </div>
+                                                 <div *ngIf="ppwd.invalid && (this.force==2) " >
+                                                   <p style='color: red'>Weak Passsword</p>
+                                                 </div> 
+                                                 <div *ngIf="ppwd.invalid && (this.force==3) " >
+                                                   <p style='color: #FF7043'>Medium Strength Password</p>
+                                                 </div> 
+                                                 </span>
+                                                 <span *ngIf="(ppwd.valid && (ppwd.dirty || ppwd.touched|| submitted)) " >
+                                                    <div *ngIf="ppwd.valid && (this.force==4) && PwdValidDis " >
+                                                      <p style='color: Green'>Strong Password</p>
+                                                    </div>
+                                                  </span>
+                                                
+
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="ppwd2" (keyup)= 'validatePwd2p($event)'   placeholder="Confirm Password" #ppwd2='ngModel' minlength="8" [(ngModel)]="password2"  required> 
+                                            <span *ngIf=" (ppwd2.invalid) && (ppwd2.dirty || ppwd2.touched|| submitted ) ">
+                                                <div *ngIf="ppwd2.errors?.required" >
+                                                    <p style='color: red'>Password is required</p>
+                                                  </div>
+                                                  <div *ngIf="ppwd2.errors?.minlength">
+                                                    <p style='color: #FF7043'>Password must be at least 8 characters long.</p>
+                                                  </div>
+                                                  <div *ngIf="ppwd2.errors?.pattern">
+                                                    <p style='color: red'>Invalid password</p>
+                                                  </div>                  
+                                            </span>
+                                            <span *ngIf=" (ppwd2.valid) && (!pwd2Valid) ">
+                                                  <div *ngIf="!pwd2Valid">
+                                                    <p style='color: red'>password mismatch</p>
+                                                  </div>                      
+                                            </span>
+                                                   
+                                        
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Gender *"[(ngModel)]="professor.gender" name="pgender"  (keyup)="gendercheck()" minlength="4" pattern="^[a-zA-Z\s]+$"required #pgender="ngModel" >
+                                            <span *ngIf=" (pgender.invalid) && (pgender.dirty || pgender.touched|| submitted ) ">
+                                                <div>
+                                                    <p style='color: red'>Enter valid gender</p>
+                                                  </div>
+                                            </span>   
+                                            <span *ngIf=" (pgender.valid) && (!genderValid) ">
+                                                <div *ngIf="!genderValid">
+                                                  <p style='color: red'>Enter Male,Female or Transgender</p>
+                                                </div>                      
+                                          </span>   
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                        <input class="form-control" type="file"  name="pphoto" (change)="selectImage($event)" [(ngModel)]="professor.photo" #pphoto="ngModel" required>
+                                        <small class="form-text text-muted" *ngIf="pphoto.touched && !pphoto.valid" class="form-label text-danger">upload photo</small>
+                                        </div>
+                                       <br>
+                                       <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Course specialization *"[(ngModel)]="professor.courses" name="pcourses"  minlength="4" pattern="^[a-zA-Z\s,]+$" required #pcourses="ngModel" >
+                                        <small class="form-text text-muted" *ngIf="pcourses.touched && !pcourses.valid" class="form-label text-danger">Enter valid course</small>
+                                        
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email *" name="pemail" #pemail="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" [(ngModel)]="professor.email" required >
+                                            <small class="form-text text-muted" *ngIf="pemail.touched && !pemail.valid" class="form-label text-danger">Enter valid email</small>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Your Date of Birth *"[(ngModel)]="professor.dob" name="pdob"  minlength="10" pattern="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$" required #pdob="ngModel" >
+                                            <small class="form-text text-muted" *ngIf="pdob.touched && !pdob.valid" class="form-label text-danger">Enter valid DoB</small> 
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="phoneno" class="form-control" placeholder="Phone number *" name="pphone" pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" length="10" [(ngModel)]="professor.phone" #pphone="ngModel" required>
+                                            <small class="form-text text-muted" *ngIf="pphone.touched && !pphone.valid" class="form-label text-danger">Enter valid phoneno</small>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="paddress" placeholder="Address *"[(ngModel)]="professor.address" minlength="12" #paddress="ngModel" required>
+                                            <small class="form-text text-muted" *ngIf="paddress.touched && !paddress.valid" class="form-label text-danger">Enter valid address</small>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="pqualification"placeholder="Your Qualification *" [(ngModel)]="professor.qualification" #pqualification="ngModel" minlength="3" required>
+                                            <small class="form-text text-muted" *ngIf="pqualification.touched && !pqualification.valid" class="form-label text-danger">Enter highest qualification</small>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Years of experience *"[(ngModel)]="professor.experience" name="pexperience"  minlength="1" maxlength="2" pattern="^[0-9]+$" required #pexperience="ngModel" >
+                                            <small class="form-text text-muted" *ngIf="pexperience.touched && !pexperience.valid" class="form-label text-danger">Enter valid experience</small>
+                                            
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary"[disabled]="signupForm2.form.invalid">Register</button>
+                                    </div>
+                                    </form>    
+                                    </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                
+
+</body>

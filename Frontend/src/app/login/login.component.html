@@ -1,0 +1,74 @@
+<body class="login-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+              <h3 class="mb-3">Login Now</h3>
+                <div class="bg-white shadow rounded">
+                    <div class="row">
+                        <div class="col-md-7 pe-0">
+                            <div class="form-left h-100 py-5 px-5">
+                                <form action="" class="row g-4" #loginForm="ngForm"(ngSubmit)="loginForm.form.valid && login()">
+                                        <div class="col-12">
+                                            <label>Email<span class="text-danger">*</span></label>
+                                            <span *ngIf="(email.invalid && (email.dirty || email.touched|| submitted))">
+                                                <div *ngIf="email.errors?.required" >
+                                                    <p style="color: red;">Email is required</p>
+                                                  </div>
+                                                  <div *ngIf="email.errors?.pattern">
+                                                    <p style="color: red;">Invalid Email ID</p>
+                                                  </div>
+                                            </span>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                                                <input type="text" class="form-control" name="email" id="loginEmail" #email="ngModel"  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" [(ngModel)]="item.email" required> 
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label>Password<span class="text-danger">*</span></label>
+                                            <span *ngIf="(pwd.invalid && (pwd.dirty || pwd.touched|| submitted))">
+                                                <div *ngIf="pwd.errors?.required" >
+                                                    <p style="color:red">Password is required</p>
+                                                  </div>
+                                                  <div *ngIf="pwd.errors?.minlength">
+                                                    <p style="color:red">Password must be at least 8 characters long.</p>
+                                                  </div>
+                                                  <div *ngIf="pwd.errors?.pattern">
+                                                    <p style="color:red">Invalid password</p>
+                                                  </div>
+                                            </span>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+                                                <input type="password" class="form-control" name="pwd"   minlength="8" #pwd="ngModel" [(ngModel)]="item.password" required>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                           <p class="float-left">New user? <a href="/signup" >Signup</a></p>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary px-4 float-end mt-4"(mousedown)="submitted=true">Login</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-5 ps-0 d-none d-md-block">
+                            <div class="form-right h-100 text-white text-center pt-4">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <h2 >Course Management Login</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>

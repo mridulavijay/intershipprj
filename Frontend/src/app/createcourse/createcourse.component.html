@@ -1,0 +1,55 @@
+
+<div class="container">
+<div class="my-custom-container">
+  <form #courseForm="ngForm" (ngSubmit)="courseForm.form.valid &&createcourse(courseForm)">
+    <h2 class="head">Create Course</h2>
+  <mat-grid-list cols="2" rowHeight="320px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <input matInput   placeholder="Course Name" type="text" name="name" [(ngModel)]="course.name"  required #name="ngModel">
+        </mat-form-field>
+     
+        <mat-form-field>
+          <input matInput  placeholder="Course Duration(in weeks)" type="text" name="courseduration" [(ngModel)]="course.duration"  required #courseduration="ngModel">
+        </mat-form-field>
+     
+        <mat-form-field>
+            <input matInput  placeholder="Practical Hours" type="text" name="phours" [(ngModel)]="course.phours"  required #phours="ngModel">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput  placeholder="Course Image Link" type="text" name="image" [(ngModel)]="course.image"  required #image="ngModel">
+          </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    
+    <mat-grid-tile>
+      <div class="controles-container">
+         
+        <mat-form-field>
+          <input matInput  placeholder="Course ID" type="text" name="courseid" [(ngModel)]="course.courseid"  required #courseid="ngModel">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <input matInput  placeholder="Course Fee" type="text" name="fees" [(ngModel)]="course.fees"  required #fees="ngModel">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput   placeholder="Course Instructor(Email id)" type="text" name="instructor" [(ngModel)]="course.instructor"  required #instructor="ngModel">
+        </mat-form-field>
+        <br>
+        <br>
+        
+        <div class="button-row">
+      <button mat-raised-button color="primary" width="140" height="40" [disabled]="courseForm.form.invalid">Create Course</button>
+      </div>
+       
+    </div>  
+      
+     </mat-grid-tile>
+     
+  </mat-grid-list>
+</form>
+</div>
+</div>
+
+

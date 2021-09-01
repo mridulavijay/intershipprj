@@ -1,0 +1,43 @@
+<mat-toolbar *ngIf=auth.loggedIn()>
+    <!-- <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button> -->
+    Course Management System
+    </mat-toolbar>
+    
+    <mat-sidenav-container *ngIf=auth.loggedIn()>
+        
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+            <img class="avatar mat-elevation-z8" src="https://cdn2.iconfinder.com/data/icons/office-49/512/education_training_learning_courses-512.png" />
+            <p class="logged">Logged in as:{{usercat}}</p>
+             <mat-divider></mat-divider>
+                <button mat-button class="menu-button" routerLink="studenthome">
+                    <mat-icon>home</mat-icon>
+                    <span>Home</span>
+                </button>
+                <button mat-button class="menu-button">
+                    <mat-icon>person</mat-icon>
+                    <span>Profile</span>
+                </button>
+                <button mat-button class="menu-button" routerLink="createcourse">
+                    <mat-icon>book</mat-icon>
+                    <span>Create Course</span>
+                </button>
+                <button mat-button class="menu-button"routerLink=""(click)="logoutUser()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Logout</span>
+                </button>
+               
+        
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content mat-elevation-z8">
+              <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
