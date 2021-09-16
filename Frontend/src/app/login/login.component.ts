@@ -24,13 +24,14 @@ LoginError ={
     .subscribe(res=>{
       
         localStorage.setItem('token', res.tok)   
-        localStorage.setItem('category', res.category)         
-        //localStorage.setItem('currentUser', this.User.email);
+        localStorage.setItem('category', res.category) 
+
+        localStorage.setItem('currentUser', this.item.email);
         
         if (res.category=="professor")
         this.router.navigate(['/sidebar'])
         else{
-          this.router.navigate(['/signup'])
+          this.router.navigate(['/sidebar'])
         }
       },
       err => {

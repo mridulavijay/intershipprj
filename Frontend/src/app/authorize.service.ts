@@ -50,7 +50,10 @@ export class AuthorizeService {
   }
   loggedIn()
   {
-    return !!localStorage.getItem('token')
+    return !!localStorage.getItem('token');
+  }
+  getToken(){
+    return localStorage.getItem('token');
   }
 
 }

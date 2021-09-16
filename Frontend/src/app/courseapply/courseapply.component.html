@@ -1,0 +1,47 @@
+<body>
+<br>
+<!-- <span ><div style ='color: #311B92;  padding:5px;'><h3 style=" text-align: center; font-family : cursive;">{{alertMsg}}</h3></div></span> -->
+<div class="box"  *ngFor ="let course of courses;let i=index;">
+    <div class="card mb-3">
+      <div class="row g-0 " >
+        <div class="col-md-4 d-flex flex-column align-items-center">
+          <img
+            src="{{course.image}}"
+            alt="..."
+            class="img-fluid mt-5 p-2"
+            style="width:100px;"
+          />
+        </div>
+        <div class="col-md-8" style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif">
+          <div class="card-body ">
+             <br>
+            <p class="card-title  "         >Course Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  :&nbsp; {{course.coursename}}</p>
+            <p class="card-text text-muted ">Course ID &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp; {{course.courseid}}</p>
+            <p class="card-text text-muted ">Course Duration(in weeks) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; {{course.duration}}</p>
+            <p>
+              <a id="bttn" role="button" data-bs-toggle="collapse" href="#collapseExample{{i}}"  aria-expanded="false" attr.aria-controls="collapseExample{{i}}">
+                See More
+              </a>
+            </p>
+            <div class="collapse in" id="collapseExample{{i}}" >
+              <div >
+            <p class="card-text text-muted" >Course Fees &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; {{course.fee}}</p>
+            <p class="card-text text-muted ">Course Instructor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;{{course.instructor}}</p>
+            <p class="card-text text-muted ">Course Practical Hours &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; {{course.practicalh}}</p>
+            
+            <div class="card-body text-end">
+              <button class="btn btn-primary float-right text-center"  (click)="course_fetch(course.courseid)" >Apply &nbsp;</button>&nbsp;
+              
+              </div>
+          </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+   
+  </div>
+
+<br>
+</body>

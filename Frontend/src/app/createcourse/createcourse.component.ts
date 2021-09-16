@@ -17,6 +17,7 @@ courseid:"",
 fees:"",
 instructor:"",
 image:""
+
 }
   constructor(private courseser:CourseserviceService,private router:Router) { }
 

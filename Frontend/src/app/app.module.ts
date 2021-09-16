@@ -1,9 +1,9 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { TokenInterceptorService } from './token-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -21,7 +21,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { ProfileComponent } from './profile/profile.component';
+import { CourseapplyComponent } from './courseapply/courseapply.component';
+import {MatListModule} from '@angular/material/list';
+import { CourseserviceService } from './courseservice.service';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AuthguardGuard } from './authguard.guard';
+import { StudentapplicationComponent } from './studentapplication/studentapplication.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +35,10 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     SidebarComponent,
     StudenthomeComponent,
-    CreatecourseComponent
+    CreatecourseComponent,
+    ProfileComponent,
+    CourseapplyComponent,
+    StudentapplicationComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +56,15 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    MatExpansionModule
   ],
-  providers: [AuthorizeService],
+  providers: [AuthorizeService,CourseserviceService,AuthguardGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,64 @@
+.container{
+    padding-top: 5%; 
+/* background-color: rgb(187, 14, 178); */
+padding-bottom: 5%;
+padding-left: 10%;
+padding-right: 10%;
+border-width: 20px;
+border-color: rgb(99, 15, 168);
+/* box-shadow: 0px 0px 10px 0px rgb(128, 16, 219); */
+border-radius: 30px;
+border-block-end-width: 10px;
+border: solid 1px #dad7db;
+    
+
+
+}
+.text-right{
+    font-size: 30px;
+    font-weight:20px;
+    /* color: rgb(105, 27, 27); */
+    text-align: center;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 1rem;
+    padding-top: 10px;
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}

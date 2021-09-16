@@ -18,8 +18,9 @@ const ProfileSchema= new Schema({
   dob:String,
   experience:Number,
   courses:String,
-  category:String
-   
+  courseapplied:String,
+  category:String,
+  courseapproval:String 
 });
 var Profiledata=mongoose.model("profiledata",ProfileSchema);
 module.exports=Profiledata;

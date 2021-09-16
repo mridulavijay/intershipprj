@@ -1,0 +1,53 @@
+
+  
+      <div class="container rounded bg-white ">
+        <form class="form">
+        <div class="row">
+              <div class="col-md-3 border-right">
+                 <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{{item.photo}}" name="photo"  width="100%" ><span class="font-weight-bold">{{item.firstname}}</span><span class="text-black-50">{{item.email}}</span><span> </span></div> 
+            </div>  
+           
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="text-right">Profile </h5>
+                    </div>
+                    
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label for ="name" class="labels">First Name</label><input type="text" class="form-control"   name="firstname" placeholder="{{item.firstname}}" readonly required></div>
+                        <div class="col-md-6"><label for ="name" class="labels">Last Name</label><input type="text" class="form-control"   name="lastname" placeholder={{item.lastname}} readonly required></div>
+                        <div class="col-md-6"><label class="labels">PhoneNumber</label><input type="text" class="form-control"   name="phone" [(ngModel)]="item.phone" #phone="ngModel" readonly></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder={{item.email}} disabled name="email" [(ngModel)]="item.email" #email="ngModel"></div>
+                        <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" disabled  placeholder="{{item.address}}" name="address" [(ngModel)]="item.address" #address="ngModel"></div>
+                        <div class="col-md-12"><label class="labels">Highest Qualification</label><input type="text" class="form-control" disabled  placeholder="{{item.qualification}}"  name="qualification" [(ngModel)]="item.qualification" #qualification="ngModel"></div>
+                        
+  
+                    </div>
+                    <div class="row mt-3" *ngIf="usercat()">
+                        <div class="col-md-12"><label class="labels">Years of Experience</label><input type="text" class="form-control" disabled  placeholder="{{item.experience}}" name="experience" [(ngModel)]="item.experience" #experience="ngModel"></div>
+                    
+                    
+                      </div>
+                      <div class="row mt-3" *ngIf="usercat()">
+                      <div class="col-md-12"><label class="labels">Specialized Courses</label><input type="text" class="form-control" disabled  placeholder="{{item.courses}}" name="courses" [(ngModel)]="item.courses" #courses="ngModel"></div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="p-3 py-5">
+                            <!-- <div class="col-md-12"><label class="labels">Skill Set</label><input type="text" class="form-control" disabled  placeholder="{{trainer.skillset}}"  name="skillset" [(ngModel)]="trainer.skillset" #skillset="ngModel"></div> -->
+                        <div class="col-md-12"><label class="labels">Gender</label><input type="text" class="form-control" disabled  placeholder="{{item.gender}}"  name="gender" [(ngModel)]="item.gender" #gender="ngModel"></div>
+                        <div class="col-md-12"><label class="labels">Date of Birth</label><input type="text" class="form-control" disabled  placeholder="{{item.dob}}"  name="dob" [(ngModel)]="item.dob" #dob="ngModel"></div>
+                        </div>
+                      </div>
+              
+                
+             
+           
+            </div>
+      </form>
+     
+    </div>
+  

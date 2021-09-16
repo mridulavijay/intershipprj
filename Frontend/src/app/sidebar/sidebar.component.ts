@@ -27,11 +27,20 @@ export class SidebarComponent implements OnInit {
       }
     });
   }
+  getusercat(){
+  
+    if(this.usercat=="professor"){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   logoutUser()
   {
   localStorage.removeItem('token')
   localStorage.removeItem('category')
-  
+  localStorage.removeItem('currentUser');
   this.router.navigate([''])
   }
 }

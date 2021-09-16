@@ -7,7 +7,7 @@ const jwt=require('jsonwebtoken');
 const multer=require('multer');
 app.use(express.json());
 app.use(cors());
-
+app.use(express.static('./public'))
 app.use(express.urlencoded({extended:true}));
 const PORT=process.env.PORT||3000;
 
@@ -44,9 +44,27 @@ function verifyToken(req, res, next) {
   }
 //Router declarations//
 const profrouter=require("./src/routes/profRoutes")(verifyToken,storage)
-//const adminrouter=require("./src/routes/adminRoutes")(verifyToken)
+const studentrouter=require("./src/routes/studentRoutes")(verifyToken)
 app.use('/profhome',profrouter);
 app.use('/profhome/createcourse',profrouter);
+app.use('/profhome/studentlist',profrouter);
+app.use('/profhome/studentlist/accept',profrouter);
+app.use('/profhome/studentlist/reject',profrouter);
+app.use('/studenthome',studentrouter);
+app.use('/studenthome/course',studentrouter);
+app.use('/studenthome/course/apply',studentrouter);
+
+app.get('/profile/:email',verifyToken,(req,res)=>{
+  const email=req.params.email;
+
+Profiledata.findOne({"email":email})
+.then(function(profile){
+  //console.log(profile);
+ res.send(profile);
+ })
+}
+)
+
 //app.use('/adminhome',adminrouter);
 
 //signup call for backend//
@@ -101,7 +119,9 @@ app.post('/signup',function(req,res){
                password:pass_hash,
                photo:'http://localhost:3000/images/'+req.file.filename,
                dob:req.body.DoB,
-               category:req.body.category
+               category:req.body.category,
+               courseapplied:"",
+               courseapproval:false
         }
           }
        
