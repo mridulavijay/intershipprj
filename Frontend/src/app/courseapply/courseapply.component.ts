@@ -30,6 +30,7 @@ export class CourseapplyComponent implements OnInit {
    applydetail={courseid:"",
   email:""}
   user:any;
+  anchor:any;
   constructor(private course:CourseserviceService,private router:Router) { }
   
   ngOnInit(): void {
@@ -40,7 +41,15 @@ export class CourseapplyComponent implements OnInit {
   }
   toggleview():void{
     // this.state = this.state === 'collapsed' ? 'expanded' : 'collapsed';
-  
+  this.anchor=document.getElementById("bttn")?.getAttribute("aria-expanded");
+  console.log(this.anchor)
+  if(this.anchor=="false"){
+    this.anchor="true";
+  }
+else{
+ this.anchor="false";
+}
+document.getElementById("bttn")?.setAttribute("aria-expanded",this.anchor);
   }
  course_fetch(courseid:any){
 this.user=localStorage.getItem('currentUser');

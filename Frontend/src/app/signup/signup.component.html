@@ -124,7 +124,7 @@
                                         </div>
                                         <br>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="qualification"placeholder="Your Qualification *" [(ngModel)]="student.qualification" #qualification="ngModel" minlength="4" required>
+                                            <input type="text" class="form-control" name="qualification"placeholder="Your Qualification *" [(ngModel)]="student.qualification" #qualification="ngModel" minlength="2" required>
                                             <small class="form-text text-muted" *ngIf="qualification.touched && !qualification.valid" class="form-label text-danger">Enter highest qualification</small>
                                         </div>
                                         <br>
@@ -244,7 +244,7 @@
                                         </div>
                                         <br>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="pqualification"placeholder="Your Qualification *" [(ngModel)]="professor.qualification" #pqualification="ngModel" minlength="3" required>
+                                            <input type="text" class="form-control" name="pqualification"placeholder="Your Qualification *" [(ngModel)]="professor.qualification" #pqualification="ngModel" minlength="2" required>
                                             <small class="form-text text-muted" *ngIf="pqualification.touched && !pqualification.valid" class="form-label text-danger">Enter highest qualification</small>
                                         </div>
                                         <br>
